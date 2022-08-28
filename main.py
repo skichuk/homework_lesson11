@@ -29,18 +29,18 @@ def get_candidate(x):
 
 @app.route('/search/<name>')
 def get_candidates_by_name(name):
-    candidate = get_candidates_by_name(name, candidates)
-    if candidate:
-        return render_template('search.html', candidate=candidate)
+    candidate_name = get_candidates_by_name(name, candidates)
+    if candidate_name:
+        return render_template('search.html', candidate=candidate_name)
     else:
         return "NOT FOUND"
 
 
 @app.route('/skills/<skill>')
 def get_skills(skill):
-    users = get_candidates_by_skill(skill, candidates)
-    if users:
-        render_template('skill.html', users=users)
+    candidates_by_skill = get_candidates_by_skill(skill, candidates)
+    if candidates_by_skill:
+        render_template('skill.html', users=candidates_by_skill)
     else:
         return "NOT FOUND"
 
