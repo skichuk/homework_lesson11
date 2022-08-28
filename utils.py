@@ -8,35 +8,39 @@ def load_candidates_from_json(path):
     """
     with open(path, 'r', encoding='utf-8') as file:
         data = json.load(file)
-    candidates_list = []
+    candidates = []
     for item in data:
-        candidate = Candidates(item['pk'], item['name'], item['picture'], item['position'], item['skills'])
-        candidates_list.append(candidate)
-    return candidates_list
+        candidate = Candidates(item['id'], item['name'], item['picture'], item['position'], item['skills'])
+        candidates.append(candidate)
+    return candidates
 
 
-def get_candidate(pk, candidates_list):
+def get_candidate(x, candidates):
     """
-    Функция возвращает кандидата по pk
+    Функция возвращает кандидата по id
     """
-    for item in candidates_list:
-        if item.pk == pk:
+    for item in candidates:
+        if item.id == x:
             return item
 
 
-def get_candidates_by_name(candidate_name):
+def get_candidates_by_name(name, candidates):
     """
     Функция возвращает кандидатов по имени
     """
-    pass
+    candidate_name = []
+    for item in candidates:
+        if item.name == name:
+            candidate_name.append(item.name)
+    return candidate_name
 
 
-def get_candidates_by_skill(skill, candidates_list):
+def get_candidates_by_skill(skill, candidates):
     """
     Функция возвращает кандидатов по навыку
     """
     skill_names = []
-    for item in candidates_list:
+    for item in candidates:
         if skill.lower() in item.skills.lower():
-            skill_names.append(item)
+            skill_names.append(item.name)
     return skill_names
