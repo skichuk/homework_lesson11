@@ -31,7 +31,7 @@ def get_candidates_by_name(candidate_name, candidates):
     candidates_by_name = []
     for item in candidates:
         if candidate_name.title() in item.name.title():
-            candidates_by_name.append(item.name)
+            candidates_by_name.append(item)
     return candidates_by_name
 
 
@@ -42,5 +42,5 @@ def get_candidates_by_skill(skill_name, candidates):
     names_by_skill = []
     for item in candidates:
         if skill_name.lower() in item.skills.lower():
-            names_by_skill.append(item.name)
+            names_by_skill.append(item)
     return names_by_skill

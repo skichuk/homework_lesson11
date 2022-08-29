@@ -41,11 +41,11 @@ def get_name(candidate_name):
 
 
 @app.route('/skill/<skill_name>')
-def get_skill(skill_name):
+def get_names_by_skill(skill_name):
 # Вывод кандидатов по навыку
     candidates_by_skill = get_candidates_by_skill(skill_name, candidates)
     if candidates_by_skill:
-        render_template('skill.html', skill=skill_name, users=candidates_by_skill)
+        return render_template('skill.html', skill=skill_name, users=candidates_by_skill)
     else:
         return "NOT FOUND"
 

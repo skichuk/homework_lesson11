@@ -1,5 +1,5 @@
 class Candidates:
-    def __init__(self, id, name, position, picture, skills):
+    def __init__(self, id, name, picture, position, skills):
         self.id = id
         self.name = name
         self.picture = picture
@@ -7,4 +7,4 @@ class Candidates:
         self.skills = skills
 
     def __repr__(self):
-        return f'{self.name}\n{self.position}\n{self.picture}\n{self.skills}'
+        return f'{self.name}\n{self.picture}\n{self.position}\n{self.skills}'
