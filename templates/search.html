@@ -5,9 +5,9 @@
     <title>Search</title>
 </head>
 <body>
-    <h1>найдено кандидатов {{len(candidate}}</h1>
-    {% for item in candidate %}}
-        <p><a href="/search/{{item.id}}">{{item.name}}</a></p>
+    <h1>Найдено кандидатов {{ candidates|count }}</h1>
+    {% for item in candidates %}
+        <p><a href="/candidate/{{item.id}}">{{item.name}}</a></p>
     {% endfor %}
 </body>
 </html>

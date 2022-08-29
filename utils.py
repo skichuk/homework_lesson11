@@ -15,7 +15,7 @@ def load_candidates_from_json(path):
     return candidates
 
 
-def get_candidate(x, candidates):
+def get_candidate_by_id(x, candidates):
     """
     Функция возвращает кандидата по id
     """
@@ -24,23 +24,23 @@ def get_candidate(x, candidates):
             return item
 
 
-def get_candidates_by_name(name, candidates):
+def get_candidates_by_name(candidate_name, candidates):
     """
-    Функция возвращает кандидатов по имени
+    Функция возвращает список кандидатов по имени
     """
-    candidate_name = []
+    candidates_by_name = []
     for item in candidates:
-        if item.name == name:
-            candidate_name.append(item.name)
-    return candidate_name
+        if candidate_name.title() in item.name.title():
+            candidates_by_name.append(item.name)
+    return candidates_by_name
 
 
-def get_candidates_by_skill(skill, candidates):
+def get_candidates_by_skill(skill_name, candidates):
     """
-    Функция возвращает кандидатов по навыку
+    Функция возвращает список кандидатов по навыку
     """
-    skill_names = []
+    names_by_skill = []
     for item in candidates:
-        if skill.lower() in item.skills.lower():
-            skill_names.append(item.name)
-    return skill_names
+        if skill_name.lower() in item.skills.lower():
+            names_by_skill.append(item.name)
+    return names_by_skill

@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from utils import load_candidates_from_json, get_candidates_by_skill, get_candidate, get_candidates_by_name
+from utils import load_candidates_from_json, get_candidates_by_skill, get_candidate_by_id, get_candidates_by_name
 
 app = Flask(__name__)
 
@@ -10,37 +10,42 @@ candidates = load_candidates_from_json(FILEPATH)
 
 @app.route('/')
 def page_index():
+# Первое задание впихнул сюда
     return render_template('index.html')
 
 
 @app.route('/candidates')
 def get_candidates():
+# Вывод всех кандидатов
     return render_template('list.html', candidates=candidates)
 
 
-@app.route('/candidates/<int:x>')
+@app.route('/candidate/<int:x>')
 def get_candidate(x):
-    candidate = get_candidate(x, candidates)
+# Вывод кандидатов по id
+    candidate = get_candidate_by_id(x, candidates)
     if candidate:
         return render_template('single.html', candidate=candidate)
     else:
         return 'NOT FOUND'
 
 
-@app.route('/search/<name>')
-def get_candidates_by_name(name):
-    candidate_name = get_candidates_by_name(name, candidates)
-    if candidate_name:
-        return render_template('search.html', candidate=candidate_name)
+@app.route('/search/<candidate_name>')
+def get_name(candidate_name):
+# Вывод кандидатов по имени
+    candidates_by_name = get_candidates_by_name(candidate_name, candidates)
+    if candidates_by_name:
+        return render_template('search.html', candidates=candidates_by_name)
     else:
         return "NOT FOUND"
 
 
-@app.route('/skills/<skill>')
-def get_skills(skill):
-    candidates_by_skill = get_candidates_by_skill(skill, candidates)
+@app.route('/skill/<skill_name>')
+def get_skill(skill_name):
+# Вывод кандидатов по навыку
+    candidates_by_skill = get_candidates_by_skill(skill_name, candidates)
     if candidates_by_skill:
-        render_template('skill.html', users=candidates_by_skill)
+        render_template('skill.html', skill=skill_name, users=candidates_by_skill)
     else:
         return "NOT FOUND"
 
